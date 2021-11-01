@@ -1,6 +1,6 @@
 package dev.vfcardoso.poc.business.valueobjects;
 
-public enum SecurityRoles {
+public enum SecurityRole {
     USER,
     ADMIN
 }
