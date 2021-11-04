@@ -19,23 +19,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-
         auth.userDetailsService(userDetailsService)
             .passwordEncoder(new BCryptPasswordEncoder());
-
-//        auth.inMemoryAuthentication()
-//                .withUser("admin")
-//                .password("{noop}admin")
-//                .roles(SecurityRoles.ADMIN.name());
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-//        http.authorizeRequests()
-//                .anyRequest()
-//                .permitAll()
-//                .and().csrf().disable();
-
         http.authorizeRequests()
                 .antMatchers("/static/**").permitAll()
                 .anyRequest().authenticated()
@@ -50,6 +39,4 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .logoutSuccessUrl("/login");
     }
-
-
 }

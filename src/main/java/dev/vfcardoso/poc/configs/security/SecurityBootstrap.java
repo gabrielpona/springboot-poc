@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
+import org.springframework.core.env.Environment;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
@@ -19,11 +20,16 @@ public class SecurityBootstrap implements ApplicationListener<ApplicationReadyEv
     private Logger log = LoggerFactory.getLogger(this.getClass());
 
     @Autowired private UserRepository userRepository;
+    @Autowired private Environment env;
 
     @Override
     public void onApplicationEvent(ApplicationReadyEvent event) {
         log.info("Verifying if default user exists");
-        createUserWithRole("admin", "admin", "admin@vfcardoso.dev", SecurityRole.ADMIN);
+        createUserWithRole(
+                env.getProperty("spring.application.admin.username"),
+                env.getProperty("spring.application.admin.password"),
+                env.getProperty("spring.application.admin.email"),
+                SecurityRole.valueOf(env.getProperty("spring.application.admin.role")));
     }
 
     private void createUserWithRole(String username, String password, String email, SecurityRole authority) {
