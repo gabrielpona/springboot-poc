@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <footer class="main-footer" th:fragment="navbar-menu-default">
+            <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
+            All rights reserved.
+            <div class="float-right d-none d-sm-inline-block">
+                <span th:text="${@envData.getApplicationName()}"></span>&nbsp;|&nbsp;
+                <b>V.</b> <span th:text="${@envData.getApplicationVersion()}"></span>
+            </div>
+        </footer>
+    </body>
+</html>
