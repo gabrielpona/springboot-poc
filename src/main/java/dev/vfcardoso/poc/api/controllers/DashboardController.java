@@ -12,9 +12,11 @@ public class DashboardController {
         return "pages/dashboard/home";
     }
 
+    /*
     @GetMapping("/dashboard/users/list")
     public String list(Model model) {
         return "pages/dashboard/list";
     }
+     */
 
 }

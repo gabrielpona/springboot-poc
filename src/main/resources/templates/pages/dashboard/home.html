@@ -7,8 +7,14 @@
     <title>Home Page</title>
 </head>
 
-<body layout:fragment="content">
-    <p>Welcome to: <span th:text="${appName}">Our App</span></p>
-    <a href="/logout" th:href="@{/logout}">Logout</a>
+<body class="hold-transition sidebar-mini layout-fixed">
+    <div layout:fragment="content" class="wrapper">
+        <section class="content">
+            <div class="container-fluid">
+                <p>Welcome to: <span th:text="${appName}">Our App</span></p>
+                <a href="/logout" th:href="@{/logout}">Logout</a>
+            </div>
+        </section>
+    </div>
 </body>
 </html>

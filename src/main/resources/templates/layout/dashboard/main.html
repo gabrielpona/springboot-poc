@@ -26,7 +26,7 @@
     <!-- Daterange picker -->
     <link rel="stylesheet" href="/assets/dashboard/vendor/daterangepicker/daterangepicker.css">
     <!-- summernote -->
-    <link rel="stylesheet" href="assets/dashboard/vendor/summernote/summernote-bs4.min.css">
+    <!--<link rel="stylesheet" href="assets/dashboard/vendor/summernote/summernote-bs4.min.css">-->
   </head>
   <body class="hold-transition sidebar-mini layout-fixed">
   <div class="wrapper">
@@ -37,9 +37,8 @@
     </div>
 
     <!-- Navbar -->
-    <nav th:insert="~{layout/dashboard/fragments/navbar}"></nav>
+    <nav th:replace="~{layout/dashboard/fragments/navbar :: nav}"></nav>
     <!-- /.navbar -->
-
 
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
@@ -52,8 +51,6 @@
       <!-- Sidebar -->
       <div class="sidebar">
         <!-- Sidebar user panel (optional) -->
-
-
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
           <div class="image">
             <img src="/assets/dashboard/vendor/adminlte/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
@@ -62,7 +59,6 @@
             <a href="#" class="d-block">Alexander Pierce</a>
           </div>
         </div>
-
 
         <!-- SidebarSearch Form -->
         <div class="form-inline">
@@ -76,7 +72,7 @@
           </div>
         </div>
         <!-- Sidebar Menu -->
-        <nav th:insert="~{layout/dashboard/fragments/sidebar-menu-default}"></nav>
+        <nav th:replace="~{layout/dashboard/fragments/sidebar-menu-default :: nav}"></nav>
         <!-- /.sidebar-menu -->
       </div>
       <!-- /.sidebar -->
@@ -89,7 +85,7 @@
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1 class="m-0">Dashboard</h1>
+              <h1 class="m-0" th:text="${titulo}">Dashboard</h1>
             </div><!-- /.col -->
             <!--
             <div class="col-sm-6">
@@ -110,7 +106,7 @@
       <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
-    <footer th:insert="~{layout/dashboard/fragments/footer}"></footer>
+    <footer th:replace="~{layout/dashboard/fragments/footer :: footer}"></footer>
 
     <!-- Control Sidebar -->
     <aside class="control-sidebar control-sidebar-dark">
