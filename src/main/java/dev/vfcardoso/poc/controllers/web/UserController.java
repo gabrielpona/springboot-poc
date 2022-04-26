@@ -24,10 +24,8 @@ import java.util.Map;
 public class UserController {
 
 
-
-
-
-
+    @GetMapping("/create")
+    public String create(Model model) { return "pages/dashboard/user/create"; }
 
 
     @GetMapping("/list")
