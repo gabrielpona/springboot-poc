@@ -17,7 +17,28 @@
                                 </h3>
                             </div>                            
                             <div class="card-body">
-                                <span>b</span>
+                                <form action="#" th:action="@{/dashboard/users/add}" th:object="${user}" method="post">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label for="txtUserFirstname">Nome</label>
+                                                <input type="text" class="form-control form-control-sm" id="txtUserFirstname" th:field="*{firstname}"/>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label for="txtUserLastname">Sobrenome</label>
+                                                <input type="text" class="form-control form-control-sm" id="txtUserLastname" th:field="*{lastname}"/>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label for="txtUserUsername">Nome de Usuário</label>
+                                                <input type="text" class="form-control form-control-sm" id="txtUserUsername" th:field="*{username}"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>

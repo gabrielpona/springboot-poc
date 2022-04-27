@@ -2,6 +2,7 @@ package dev.vfcardoso.poc.controllers.web;
 
 import com.fasterxml.jackson.databind.util.JSONPObject;
 import dev.vfcardoso.poc.business.dao.UserDtDao;
+import dev.vfcardoso.poc.business.models.User;
 import dev.vfcardoso.poc.helper.arch.datatables.DataTables;
 import dev.vfcardoso.poc.helper.arch.datatables.OrderWrapper;
 import dev.vfcardoso.poc.helper.datatables.DtUser;
@@ -25,11 +26,20 @@ public class UserController {
 
 
     @GetMapping("/create")
-    public String create(Model model) { return "pages/dashboard/user/create"; }
-
+    public String create(Model model) {
+        model.addAttribute("user", new User());
+        return "pages/dashboard/user/create";
+    }
 
     @GetMapping("/list")
     public String list(Model model) { return "pages/dashboard/user/list"; }
+
+
+    @PostMapping("/add")
+    public String add(@ModelAttribute User user, Model model) {
+        model.addAttribute("user", user);
+        return "pages/dashboard/user/list";
+    }
 
 
 
