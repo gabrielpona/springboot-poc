@@ -37,6 +37,34 @@
                                                 <input type="text" class="form-control form-control-sm" id="txtUserUsername" th:field="*{username}"/>
                                             </div>
                                         </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label for="slcUserRole">Papel</label>
+                                                <select id="slcUserRole" class="form-control form-control-sm"  th:field="*{role}">
+                                                    <option value="-1" disabled selected>Selecione...</option>
+                                                    <option th:each="securityRole : ${securityRoles}" th:value="${securityRole}" th:text="${securityRole.name()}"></option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label for="txtUserEmail">Email</label>
+                                                <input type="email" class="form-control form-control-sm" id="txtUserEmail" th:field="*{email}"/>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label for="txtUserPassword">Senha</label>
+                                                <input type="password" class="form-control form-control-sm" id="txtUserPassword" th:field="*{password}"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <button type="submit" class="btn btn-primary float-right">Submit</button>
+                                        </div>
                                     </div>
                                 </form>
                             </div>
