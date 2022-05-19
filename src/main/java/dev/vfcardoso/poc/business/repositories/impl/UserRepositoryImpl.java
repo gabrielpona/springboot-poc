@@ -17,7 +17,6 @@ import java.util.Objects;
 @Repository
 public class UserRepositoryImpl implements UserRepositoryCustom {
 
-
     @PersistenceContext
     private EntityManager em;
 
