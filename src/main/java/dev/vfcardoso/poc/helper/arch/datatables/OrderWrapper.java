@@ -1,13 +1,7 @@
 package dev.vfcardoso.poc.helper.arch.datatables;
 
-import org.springframework.context.annotation.Bean;
-
-import javax.inject.Named;
-
 public class OrderWrapper {
-    @Named("column")
     private int column;
-    @Named("dir")
     private String dir;
 
 
