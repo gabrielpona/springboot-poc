@@ -1,4 +1,4 @@
-package dev.vfcardoso.poc.business.repositories;
+package dev.vfcardoso.poc.business.repositories.base;
 
 import java.util.List;
 

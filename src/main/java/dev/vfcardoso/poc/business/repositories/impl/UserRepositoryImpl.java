@@ -1,29 +1,26 @@
-package dev.vfcardoso.poc.business.dao;
+package dev.vfcardoso.poc.business.repositories.impl;
 
+import dev.vfcardoso.poc.business.repositories.custom.UserRepositoryCustom;
 import dev.vfcardoso.poc.helper.arch.datatables.DataTables;
 import dev.vfcardoso.poc.helper.arch.datatables.DataTablesHelper;
 import dev.vfcardoso.poc.helper.arch.utility.ConvertUtils;
 import dev.vfcardoso.poc.helper.datatables.DtUser;
-import org.hibernate.CacheMode;
-import org.hibernate.SessionFactory;
-import org.hibernate.query.Query;
-import org.springframework.stereotype.Component;
 
+import org.springframework.stereotype.Repository;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Objects;
 
-@Component
-public class UserDtDao extends AbstractDao{
+@Repository
+public class UserRepositoryImpl implements UserRepositoryCustom {
 
+    @PersistenceContext
+    private EntityManager em;
 
-
-    public UserDtDao(SessionFactory sessionFactory) {
-        super(sessionFactory);
-    }
-
-    public DataTables<DtUser> listJson(DtUser dtUsuario, Long associacaoId, int start, int length, int orderColumn, String orderDirection)
-            throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
-
+    public DataTables<DtUser> listJson(DtUser dtUsuario, Long associacaoId, int start, int length, int orderColumn, String orderDirection) throws InvocationTargetException, NoSuchMethodException, IllegalAccessException, InstantiationException {
 
         StringBuilder consulta = new StringBuilder();
 
@@ -73,7 +70,7 @@ public class UserDtDao extends AbstractDao{
 
         consulta.append("order by ").append(orderColumn + 2).append(" ").append(orderDirection);
 
-        Query q = this.getSessionFactory().openSession().createSQLQuery(consulta.toString());
+        Query q = this.em.createNativeQuery(consulta.toString());
 
         if (dtUsuario.getDT_RowId() != null && dtUsuario.getDT_RowId() != 0)
             q.setParameter("rowid", dtUsuario.getDT_RowId());
@@ -93,13 +90,13 @@ public class UserDtDao extends AbstractDao{
         }
          */
 
-        q.setCacheMode(CacheMode.REFRESH);
-
-        return new DataTablesHelper<>(DtUser.class).getDatatablesFromRawObjectArray(q.list(), dtUsuario.isEmpty(),
+        return new DataTablesHelper<>(DtUser.class).getDatatablesFromRawObjectArray(q.getResultList(), dtUsuario.isEmpty(),
                 start, length, this.countAll());
+
     }
 
     private int countAll() {
-        return ConvertUtils.convertTo(this.getSessionFactory().openSession().createQuery("select count(*) from User ").uniqueResult(), Integer.class);
+        return ConvertUtils.convertTo(this.em.createNativeQuery("select count(*) from User ").getFirstResult(), Integer.class);
     }
+
 }

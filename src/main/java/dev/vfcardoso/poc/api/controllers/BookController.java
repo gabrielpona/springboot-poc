@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import dev.vfcardoso.poc.business.models.Book;
-import dev.vfcardoso.poc.business.repositories.BookRepository;
+import dev.vfcardoso.poc.business.repositories.base.BookRepository;
 
 @RestController
 @RequestMapping("/api/books")
