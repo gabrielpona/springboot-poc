@@ -1,7 +1,7 @@
 package dev.vfcardoso.poc.business.services;
 
 import dev.vfcardoso.poc.business.models.User;
-import dev.vfcardoso.poc.business.repositories.UserRepository;
+import dev.vfcardoso.poc.business.repositories.base.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

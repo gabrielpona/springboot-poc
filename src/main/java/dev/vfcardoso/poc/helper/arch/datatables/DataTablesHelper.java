@@ -15,7 +15,7 @@ public class DataTablesHelper<T> {
     }
 
     @SuppressWarnings("unchecked")
-    public DataTables<T> getDatatablesFromRawObjectArray(List<Object[]> rawObjectArray, boolean nullSearch, int start,
+    public DataTables<T> getDatatablesFromRawObjectArray(List rawObjectArray, boolean nullSearch, int start,
                                                          int length, int totalRegisters)
             throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
 

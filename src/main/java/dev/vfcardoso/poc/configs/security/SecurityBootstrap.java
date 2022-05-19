@@ -1,7 +1,7 @@
 package dev.vfcardoso.poc.configs.security;
 
 import dev.vfcardoso.poc.business.models.User;
-import dev.vfcardoso.poc.business.repositories.UserRepository;
+import dev.vfcardoso.poc.business.repositories.base.UserRepository;
 import dev.vfcardoso.poc.business.valueobjects.SecurityRole;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
