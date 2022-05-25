@@ -1,4 +1,4 @@
-package dev.vfcardoso.poc.api.controllers;
+package dev.vfcardoso.poc.controllers.api;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ControllerAdvice
-public class ErrorController {
-    private static Logger logger = LoggerFactory.getLogger(ErrorController.class);
+public class ErrorApiController {
+    private static Logger logger = LoggerFactory.getLogger(ErrorApiController.class);
 
     @ExceptionHandler(Throwable.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)

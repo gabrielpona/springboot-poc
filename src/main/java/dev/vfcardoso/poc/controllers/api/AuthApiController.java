@@ -1,11 +1,11 @@
-package dev.vfcardoso.poc.api.controllers;
+package dev.vfcardoso.poc.controllers.api;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class AuthController {
+public class AuthApiController {
 
     @RequestMapping("/login")
     public String login() {

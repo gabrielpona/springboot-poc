@@ -1,4 +1,4 @@
-package dev.vfcardoso.poc.api.controllers;
+package dev.vfcardoso.poc.controllers.api;
 
 import dev.vfcardoso.poc.business.exceptions.AppException;
 import dev.vfcardoso.poc.business.models.User;
@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/users")
-public class UserController {
+public class UserApiController {
     @Autowired private UserRepository userRepository;
 
     @GetMapping

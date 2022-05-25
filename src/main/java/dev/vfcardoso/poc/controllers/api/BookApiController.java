@@ -1,4 +1,4 @@
-package dev.vfcardoso.poc.api.controllers;
+package dev.vfcardoso.poc.controllers.api;
 
 import java.util.List;
 
@@ -20,7 +20,7 @@ import dev.vfcardoso.poc.business.repositories.base.BookRepository;
 
 @RestController
 @RequestMapping("/api/books")
-public class BookController {
+public class BookApiController {
 
     @Autowired private BookRepository bookRepository;
 

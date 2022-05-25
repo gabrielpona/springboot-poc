@@ -1,14 +1,12 @@
-package dev.vfcardoso.poc.api.controllers;
+package dev.vfcardoso.poc.controllers.api;
 
-import dev.vfcardoso.poc.configs.environment.transients.EnvironmentValues;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 
 @Controller
-public class SimpleController {
+public class SimpleApiController {
     @Value("${spring.application.name}") String appName;
 
     @GetMapping("/home2")

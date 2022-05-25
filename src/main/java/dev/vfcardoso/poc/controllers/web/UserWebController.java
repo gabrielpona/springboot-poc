@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
-@Controller("WebUserController")
+@Controller
 @RequestMapping("/dashboard/users")
-public class UserController {
+public class UserWebController {
 
     @Autowired
     UserRepository userRepository;
