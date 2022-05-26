@@ -96,7 +96,7 @@ public class UserRepositoryImpl implements UserRepositoryCustom {
     }
 
     private int countAll() {
-        return ConvertUtils.convertTo(this.em.createNativeQuery("select count(*) from User ").getFirstResult(), Integer.class);
+        return ConvertUtils.convertTo(this.em.createNativeQuery("select count(*) from [dbo].[user] ").getSingleResult(), Integer.class);
     }
 
 }
