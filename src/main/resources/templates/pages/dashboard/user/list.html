@@ -120,9 +120,8 @@
                         icon: "fas fa-edit",
                         disabled: false,
                         callback: function (key, opt) {
-                            var id = opt.$trigger.parents('tr').attr('id');
-                            alert(id);
-                            //window.open(Main.Util.getBaseUrl("/painel/usuario/edit/" + id));
+                            var id = opt.$trigger.parents('tr').attr('id');                            
+                            window.open(Main.Util.getBaseUrl("/dashboard/user/edit/" + id));
                         }
                     },
                     /*remove: {

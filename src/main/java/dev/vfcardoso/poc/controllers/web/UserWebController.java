@@ -9,6 +9,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.Optional;
+
 
 @Controller
 @RequestMapping("/dashboard/users")
@@ -27,6 +29,31 @@ public class UserWebController {
         //role.name();
 
         return "pages/dashboard/user/create";
+    }
+
+    @GetMapping("/edit/{id}")
+    public String edit(@PathVariable Long id,Model model,RedirectAttributes redirAttrs) {
+
+        try{
+
+            Optional<User> user = userRepository.findById(id);
+
+            if(user.isEmpty()){
+                throw new Exception("Usuário não localizado");
+            }
+            model.addAttribute("user", user.isPresent()?user.get():null);
+            model.addAttribute("securityRoles", SecurityRole.values());
+
+
+
+        }catch(Exception e){
+            redirAttrs.addFlashAttribute("errorMessage", e.getMessage());
+            return "redirect:list";
+        }
+
+        return "pages/dashboard/user/edit";
+
+
     }
 
     @GetMapping("/list")
