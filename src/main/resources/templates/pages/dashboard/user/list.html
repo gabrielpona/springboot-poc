@@ -121,7 +121,7 @@
                         disabled: false,
                         callback: function (key, opt) {
                             var id = opt.$trigger.parents('tr').attr('id');                            
-                            window.open(Main.Util.getBaseUrl("/dashboard/users/edit/" + id));
+                            window.open(Main.Util.getBaseUrl("/dashboard/users/edit/" + id),"_self");
                         }
                     },
                     /*remove: {

@@ -17,12 +17,13 @@
                                 </h3>
                             </div>                            
                             <div class="card-body">
-                                <form action="#" th:action="@{/dashboard/users/add}" th:object="${user}" method="post">
+                                <form action="#" th:action="@{/dashboard/users/update}" th:object="${user}" method="post">
+                                    <input type="hidden"  id="txtUserId" th:field="*{id}"/>
                                     <div class="row">
                                         <div class="col-md-3">
                                             <div class="form-group">
                                                 <label for="txtUserFirstname">Nome</label>
-                                                <input type="text" class="form-control form-control-sm" id="txtUserFirstname" th:field="*{firstname}" value="{user.getFirstname()}"/>
+                                                <input type="text" class="form-control form-control-sm" id="txtUserFirstname" th:field="*{firstname}" />
                                             </div>
                                         </div>
                                         <div class="col-md-3">
@@ -61,9 +62,10 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row">
+                                    <div class="row">                                      
                                         <div class="col-md-12">
-                                            <button type="submit" class="btn btn-primary float-right">Submit</button>
+                                            <button type="submit" class="btn btn-primary float-right">Atualizar</button>
+                                            <button type="button" class="btn btn-link float-right" onclick="location.href='../list';">Voltar</button>
                                         </div>
                                     </div>
                                 </form>
