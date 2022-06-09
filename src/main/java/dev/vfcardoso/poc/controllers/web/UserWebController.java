@@ -50,6 +50,8 @@ public class UserWebController {
     @PostMapping("/add")
     public String add(@ModelAttribute User user, RedirectAttributes redirAttrs) {
         try{
+            user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
+            user.setEnabled(true);
             userRepository.save(user);
             redirAttrs.addFlashAttribute("message", "Usuário Adicionado.");
             return "redirect:list";
@@ -61,19 +63,20 @@ public class UserWebController {
 
     @PostMapping("/update")
     public String update(@ModelAttribute User user, RedirectAttributes redirAttrs) {
+        Optional<User> u = userRepository.findById(user.getId());
         try{
-            Optional<User> u = userRepository.findById(user.getId());
             if(u.isEmpty()){
                 throw new Exception("Usuário não localizado");
             }
-            user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
+            user.setPassword(u.get().getPassword());
             user.setEnabled(u.get().getEnabled());
             userRepository.save(user);
             redirAttrs.addFlashAttribute("message", "Usuário Atualizado.");
             return "redirect:list";
         }catch (Exception e){
             redirAttrs.addFlashAttribute("errorMessage", e.getMessage());
-            return "redirect:edit";
+            String url = u.isEmpty()?"list":"edit/".concat(Long.toString(u.get().getId()));
+            return "redirect:".concat(url);
         }
     }
 

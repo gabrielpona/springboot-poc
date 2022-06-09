@@ -45,9 +45,42 @@
                     </div>
                 </div>
             </section>
+            <section layout:fragment="local-modal">
+                <div id="modalPwd" class="modal" tabindex="-1" role="dialog">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Alterar Senha</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="txtNewPwd">Nova Senha</label>
+                                            <input type="password" class="form-control form-control-sm" id="txtNewPwd" />
+                                            <input type="hidden" id="txtUsrId" value=""/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                                <button type="button" id="btnPwd" class="btn btn-primary">Atualizar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </div>
         <script layout:fragment="local-script">
         $( document ).ready(function() {
+            var $modalPwd = $("#modalPwd");
+            var $btnPwd = $("#btnPwd");
+            var $txtUsrId = $("#txtUsrId");
+
             var $tb = $('#dt-usuarios');
             //Main.View.generateColumnFilters($tb);
 
@@ -95,14 +128,11 @@
                 selector: '.dataTable td:not([colspan])',
                 items: {
                     view: {
-                        //TODO: Dá pra abstrair isso
                         name: "Detalhar",
                         icon: "fas fa-search",
                         disabled: false,
                         callback: function (key, opt) {
                             var id = opt.$trigger.parents('tr').attr('id');
-                            //console.log(opt.$trigger.parents('tr').remove());
-                            //opt.$trigger.parents('tr').innerHTML('<marquee>Hule</marquee>');
                             alert(id);
                         }
                     },
@@ -112,7 +142,8 @@
                         disabled: false,
                         callback: function (key, opt) {                           
                             var id = opt.$trigger.parents('tr').attr('id');
-                            alert(id);
+                            $txtUsrId.val(id);
+                            $modalPwd.modal('show');
                         }
                     },                    
                     edit: {
@@ -154,6 +185,14 @@
                 }
             };
             $.contextMenu(contextMenuOpts);
+
+            var resetPwdPost = function(){
+                alert($txtUsrId.val());
+            };
+
+            $btnPwd.on('click',resetPwdPost);
+
+
         });
         </script>
     </body>

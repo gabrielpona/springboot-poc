@@ -12,9 +12,10 @@
                     <div class="col-lg-12 panel-grid">
                         <div class="card card-primary card-outline">                            
                             <div class="card-header">
-                                <h3 class="card-title float-right">
-                                    <span th:text="${errorMessage}"></span>
-                                </h3>
+                                <div th:if="${errorMessage!=null}">
+                                    <div class="alert alert-danger" role="alert"  th:text=${errorMessage}>
+                                    </div>
+                                </div>
                             </div>                            
                             <div class="card-body">
                                 <form action="#" th:action="@{/dashboard/users/update}" th:object="${user}" method="post">
@@ -53,12 +54,6 @@
                                             <div class="form-group">
                                                 <label for="txtUserEmail">Email</label>
                                                 <input type="email" class="form-control form-control-sm" id="txtUserEmail" th:field="*{email}"/>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="form-group">
-                                                <label for="txtUserPassword">Senha</label>
-                                                <input type="password" class="form-control form-control-sm" id="txtUserPassword" th:field="*{password}"/>
                                             </div>
                                         </div>
                                     </div>
