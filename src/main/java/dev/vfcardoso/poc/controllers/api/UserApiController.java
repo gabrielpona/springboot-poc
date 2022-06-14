@@ -6,7 +6,13 @@ import dev.vfcardoso.poc.business.repositories.base.UserRepository;
 import dev.vfcardoso.poc.helper.arch.datatables.DataTables;
 import dev.vfcardoso.poc.helper.datatables.DtUser;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/users")
@@ -22,6 +28,26 @@ public class UserApiController {
     public User findOne(@PathVariable Long id) {
         return userRepository.findById(id)
                 .orElseThrow(AppException::new);
+    }
+
+    @GetMapping("/remove/{id}")
+    public Map<String, String> remove(@PathVariable Long id, RedirectAttributes redirAttrs) {
+        HashMap<String, String> ret = new HashMap<>();
+        Optional<User> u = userRepository.findById(id);
+        try{
+            if(u.isEmpty()){
+                throw new Exception("Usuário não localizado");
+            }
+            userRepository.delete(u.get());
+            ret.put("status", "OK");
+            ret.put("responseText", "OK");
+            return ret;
+        }catch (Exception e){
+            //TODO: Usar um Exception Handler
+            ret.put("status", "ERROR");
+            ret.put("responseText", e.getMessage());
+            return ret;
+        }
     }
 
     //@Named("order[0][column]") int orderColumn,
@@ -42,7 +68,4 @@ public class UserApiController {
             return new DataTables<>();
         }
     }
-
-
-
 }

@@ -167,5 +167,27 @@
   <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
   <!--<script src="/assets/dashboard/vendor/adminlte/js/pages/dashboard.js"></script>-->
   <script type="text/javascript" layout:fragment="local-script"></script>
+
+    <!-- Error Modal -->
+    <div class="modal" tabindex="-1" role="dialog" id="modal-error">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Ocorreu um erro!</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <span><strong>Message: </strong><span id="error-message" style="text-decoration: underline"></span></span><br>
+            <span><strong>StackTrace: </strong><span id="error-stacktrace"></span></span>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </body>
 </html>
