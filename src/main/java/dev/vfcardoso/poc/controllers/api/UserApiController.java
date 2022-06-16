@@ -7,6 +7,7 @@ import dev.vfcardoso.poc.helper.arch.datatables.DataTables;
 import dev.vfcardoso.poc.helper.datatables.DtUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -30,24 +31,17 @@ public class UserApiController {
                 .orElseThrow(AppException::new);
     }
 
-    @GetMapping("/remove/{id}")
-    public Map<String, String> remove(@PathVariable Long id, RedirectAttributes redirAttrs) {
-        HashMap<String, String> ret = new HashMap<>();
+    @DeleteMapping("/remove/{id}")
+    public ResponseEntity<Long> remove(@PathVariable Long id, RedirectAttributes redirAttrs) {
         Optional<User> u = userRepository.findById(id);
-        try{
-            if(u.isEmpty()){
-                throw new Exception("Usuário não localizado");
-            }
-            userRepository.delete(u.get());
-            ret.put("status", "OK");
-            ret.put("responseText", "OK");
-            return ret;
-        }catch (Exception e){
-            //TODO: Usar um Exception Handler
-            ret.put("status", "ERROR");
-            ret.put("responseText", e.getMessage());
-            return ret;
+
+        if(u.isEmpty()){
+            throw new AppException("Usuário não localizado");
         }
+
+        userRepository.delete(u.get());
+
+        return new ResponseEntity<>(u.get().getId(), HttpStatus.OK);
     }
 
     //@Named("order[0][column]") int orderColumn,

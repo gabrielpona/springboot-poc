@@ -164,19 +164,15 @@
                             var nomeUsuario = opt.$trigger.parent().find('td:eq(2)').text();
                             if(confirm('Tem certeza de que deseja remover o usuário ' + nomeUsuario + '?')) {
                                 $.ajax({
-                                    type: 'get',
+                                    type: 'delete',
                                     url: Main.Util.getBaseUrl("/api/users/remove/" + id),
                                     dataType: 'json',
                                     success: function(data) {
-                                        if(data.status=="OK"){
-                                            $grid.ajax.reload(null, false);
-                                            alert("Usuário Removido.");
-                                        }else{
-                                            Main.Util.alertDataError(this.url, data);
-                                        }
+                                        $grid.ajax.reload(null, false);
+                                        alert("Usuário Removido.");
                                     },
                                     error: function(data) {
-                                        Main.Util.alertDataError(this.url, data);
+                                        Main.Util.alertError(this.url, data.responseJSON.message);
                                     }
                                 });
                             }
